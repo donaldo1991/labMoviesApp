@@ -3,8 +3,9 @@ import React, { useState } from "react";
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-  const [myReviews, setMyReviews] = useState( {} ) 
+  const [myReviews, setMyReviews] = useState( {} ); 
   const [favourites, setFavourites] = useState([]);
+  const [playlist, setPlaylist] = useState([]);
 
   const addToFavourites = (movie) => {
     let updatedFavourites = [...favourites];
@@ -12,6 +13,15 @@ const MoviesContextProvider = (props) => {
       updatedFavourites.push(movie.id);
     }
     setFavourites(updatedFavourites);
+  };
+
+  const addToPlaylist = (movie) => {
+    let updatedPlaylist = [...playlist];
+    if (!playlist.includes(movie.id)) {
+      updatedPlaylist.push(movie.id);
+    }
+    setPlaylist(updatedPlaylist);
+    console.log(updatedPlaylist);
   };
 
   // We will use this function in a later section
@@ -30,6 +40,7 @@ const MoviesContextProvider = (props) => {
         addToFavourites,
         removeFromFavourites,
         addReview,
+        addToPlaylist,
       }}
     >
       {props.children}
