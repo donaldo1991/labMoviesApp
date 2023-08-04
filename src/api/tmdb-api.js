@@ -100,6 +100,40 @@ export const getUpcomingMovies = () => {
     });
 };
 
+export const getTVShows = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/trending/tv/day?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&language=en-US&include_adult=false&include_video=false&page=1`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getTVImages = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/tv/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then( (response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+
+  })
+  .catch((error) => {
+    throw error
+ });
+};
+
 export const getTrendingPeople = () => {
   return fetch(
     `https://api.themoviedb.org/3/trending/person/day?api_key=${
