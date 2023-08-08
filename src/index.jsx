@@ -13,6 +13,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
+import PersonBio from "./pages/personBioPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/people" element={<TrendingPeople />} />
+            <Route path="/people/:id" element={<PersonBio />} />
             <Route path="/tvshows" element={<TVShowsPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

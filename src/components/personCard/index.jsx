@@ -61,14 +61,11 @@ export default function PersonCard({ person }) {
           </Grid>
         </Grid>
       </CardContent>
-      {/*<CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
+        <Link to={`/people/${person.id}`}>
           <Button variant="outlined" size="medium" color="primary">
-            More Info ...
+            More Bio Info ...
           </Button>
         </Link>
-    </CardActions>*/}
     </Card>
   );
 }
