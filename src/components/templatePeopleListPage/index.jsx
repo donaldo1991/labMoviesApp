@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../headerMovieList";
-import FilterCard from "../filterMoviesCard";
+import FilterCard from "../filterTrendingPeopleCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
@@ -19,17 +19,21 @@ const styles = {
 };
 
 function PeopleListPageTemplate({ people, title }) {
-  const [nameFilter, setNameFilter] = useState("");
+  const [titleFilter, setTitleFilter] = useState("");
+  const [knownForFilter, setKnownForFilter] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const knownForId = Number(knownForFilter);
 
   let displayedPeople = people
     .filter((m) => {
-      return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+      return m.name.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
     });
 
+
   const handleChange = (type, value) => {
-    if (type === "name") setNameFilter(value);
-    else null;
+    if (type === "name") setTitleFilter(value);
+    else setKnownForFilter(value);
   };
 
   return (
@@ -57,7 +61,8 @@ function PeopleListPageTemplate({ people, title }) {
       >
         <FilterCard
           onUserInput={handleChange}
-          nameFilter={nameFilter}
+          titleFilter={titleFilter}
+          knownForFilter={knownForFilter}
         />
       </Drawer>
     </>
