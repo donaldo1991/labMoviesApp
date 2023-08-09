@@ -28,11 +28,13 @@ function PeopleListPageTemplate({ people, title }) {
   let displayedPeople = people
     .filter((m) => {
       return m.name.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return knownForId > 0 ? m.id.includes(knownForId) : true;
     });
 
-
   const handleChange = (type, value) => {
-    if (type === "name") setTitleFilter(value);
+    if (type === "title") setTitleFilter(value);
     else setKnownForFilter(value);
   };
 

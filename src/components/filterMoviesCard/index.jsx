@@ -82,6 +82,7 @@ export default function FilterMoviesCard(props) {
             onChange={handleGenreChange}
           >
             {genres.map((genre) => {
+              console.log(genre.name)
               return (
                 <MenuItem key={genre.id} value={genre.id}>
                   {genre.name}

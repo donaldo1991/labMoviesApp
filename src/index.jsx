@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import TrendingPeople from "./pages/trendingPeople";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
+import TVShowPage from "./pages/tvShowDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from "./components/siteHeader";
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/people" element={<TrendingPeople />} />
             <Route path="/people/:id" element={<PersonBio />} />
             <Route path="/tvshows" element={<TVShowsPage />} />
+            <Route path="/tvshows/:id" element={<TVShowPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MoviesContextProvider>

@@ -40,8 +40,9 @@ export default function FilterPeopleCard(props) {
   }
   
   const people = data.results;
-  console.log(people)
-
+//  if (people[0].name !== "All") {
+//    people.unshift({ id: "0", name: "All" });
+//  }
 
   const handleUserImput = (e, type, value) => {
     e.preventDefault();
@@ -49,10 +50,12 @@ export default function FilterPeopleCard(props) {
   };
 
   const handleTextChange = (e, props) => {
+    console.log(e.target.value)
     handleUserImput(e, "title", e.target.value);
   };
 
   const handleKnownForChange = (e) => {
+    console.log(e.target.value)
     handleUserImput(e, "knownFor", e.target.value);
   };
 
@@ -74,23 +77,21 @@ export default function FilterPeopleCard(props) {
         onChange={handleTextChange}
         />
         <FormControl sx={styles.formControl}>
-          <InputLabel id="genre-label">Known For</InputLabel>
+          <InputLabel id="knownFor-label">Popularity</InputLabel>
           <Select
-            defaultValue = ""
             labelId="knownFor-label"
             id="knownFor-select"
             value={props.knownForFilter}
             onChange={handleKnownForChange}
           >
             {people.map((person) => {
-                person.known_for.map((knownFor) => {
-                    console.log(knownFor.id)
-                return ( 
-                    <MenuItem key={knownFor.id} value={knownFor.id}>
-                      {knownFor.title}
-                    </MenuItem>
-                );
-            })})};
+              //console.log(person)
+              return (
+                <MenuItem key={person.id} value={person.id}>
+                  {person.popularity}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
       </CardContent>
